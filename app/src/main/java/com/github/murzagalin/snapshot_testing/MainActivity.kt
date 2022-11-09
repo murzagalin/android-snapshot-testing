@@ -14,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import com.github.murzagalin.snapshot_testing.composable.AccountCard
 import com.github.murzagalin.snapshot_testing.composable.SearchBar
 import com.github.murzagalin.snapshot_testing.views.AccountCardView
 
@@ -47,6 +48,8 @@ fun Content() {
             .fillMaxHeight()
     ) {
         SearchBar()
+
+        AccountCard(name = "Agent Smith", position = "Secret Agent")
     }
 }
 

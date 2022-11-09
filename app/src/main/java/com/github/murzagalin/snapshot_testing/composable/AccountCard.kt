@@ -4,11 +4,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountBox
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -21,50 +20,51 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SearchBar() {
-    var text by rememberSaveable { mutableStateOf("") }
+fun AccountCard(name: String, position: String) {
     Row(
         Modifier
-            .shadow(
-                elevation = 2.dp,
-                shape = RoundedCornerShape(8.dp)
-            )
             .background(
-                color = Color(0xFFEFEFEF),
+                color = Color(0xFFE8F8F8),
                 shape = RoundedCornerShape(8.dp)
             )
-            .padding(horizontal = 8.dp, vertical = 4.dp)
+            .padding(8.dp),
+        verticalAlignment = Alignment.CenterVertically
     ) {
         Image(
-            imageVector = Icons.Default.Search,
+            imageVector = Icons.Default.AccountBox,
             contentDescription = "Search",
             colorFilter = ColorFilter.tint(Color(0xFFBEBEBE)),
             modifier = Modifier
-                .align(Alignment.CenterVertically)
-                .padding(8.dp)
-                .size(32.dp)
+                .size(64.dp)
         )
 
-        TextField(
-            value = text,
-            onValueChange = {
-                text = it
-            },
-            label = { Text("Type your search query here") },
-            maxLines = 1,
-            colors = TextFieldDefaults.textFieldColors(
-                containerColor = Color.Transparent
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(
+                text = name,
+                modifier = Modifier.padding(4.dp),
+                fontSize = 16.sp,
+                color = Color.Black
             )
-        )
+
+            Text(
+                text = position,
+                modifier = Modifier.padding(4.dp),
+                fontSize = 14.sp,
+                color = Color(0xFFAAAAAA)
+            )
+        }
     }
 }
 
 @Preview
 @Composable
-fun PreviewSearchBar() {
-    SearchBar()
+fun PreviewAccountCard() {
+    AccountCard("Agent Smith", "Secret Agent")
 }
