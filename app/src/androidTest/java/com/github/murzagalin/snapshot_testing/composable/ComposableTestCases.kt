@@ -46,4 +46,4 @@ val boxTestCase = object: ComposableTestCase {
     }
 }
 
-val composableTestCases = listOf(accountCardScreenshotConfig, searchScreenshotConfig)
+val composableTestCases = listOf(accountCardScreenshotConfig, searchScreenshotConfig, boxTestCase)
