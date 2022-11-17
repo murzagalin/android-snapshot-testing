@@ -22,7 +22,7 @@ adb shell settings put global animator_duration_scale 0.0
 # The last part of the command is the instrumentation
 # To find list of instrumentations run: adb shell pm list instrumentation
 adb shell am instrument -w -m  \
--e class 'com.github.murzagalin.snapshot_testing.views.ScreenshotsMaker' \
+-e class 'com.github.murzagalin.snapshot_testing.ScreenshotsMaker' \
 com.github.murzagalin.snapshot_testing.test/androidx.test.runner.AndroidJUnitRunner
 
 # Pull the snapshots and clear the device directory
