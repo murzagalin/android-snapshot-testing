@@ -30,7 +30,7 @@ if __name__ == "__main__":
             print("<details>")
             print(f'<summary>{file_name}</summary>')
             print("")
-            new_image = f'https://github.com/deliveryhero/pd-android-fluid/blob/{commit_hash}/new/images/{img}?raw=true'
+            new_image = f'https://github.com/murzagalin/android-snapshot-testing/blob/{commit_hash}/new/images/{img}?raw=true'
             print(f'![new-{img}]({new_image})')
             print("</details>")
         print("")
@@ -42,7 +42,7 @@ if __name__ == "__main__":
             print("<details>")
             print(f'<summary>{file_name}</summary>')
             print("")
-            old_image = f'https://github.com/deliveryhero/pd-android-fluid/blob/{commit_hash}/old/images/{img}?raw=true'
+            old_image = f'https://github.com/murzagalin/android-snapshot-testing/blob/{commit_hash}/old/images/{img}?raw=true'
             print(f'![old-{img}]({old_image})')
             print("</details>")
         print("")
@@ -56,9 +56,9 @@ if __name__ == "__main__":
             print("")
             print("| Old | New | Diff |")
             print("|-----|-----|-----|")
-            old_image = f'https://github.com/deliveryhero/pd-android-fluid/blob/{commit_hash}/old/images/{img}?raw=true'
-            new_image = f'https://github.com/deliveryhero/pd-android-fluid/blob/{commit_hash}/new/images/{img}?raw=true'
-            diff_image = f'https://github.com/deliveryhero/pd-android-fluid/blob/{commit_hash}/diffs/{img}?raw=true'
+            old_image = f'https://github.com/murzagalin/android-snapshot-testing/blob/{commit_hash}/old/images/{img}?raw=true'
+            new_image = f'https://github.com/murzagalin/android-snapshot-testing/blob/{commit_hash}/new/images/{img}?raw=true'
+            diff_image = f'https://github.com/murzagalin/android-snapshot-testing/blob/{commit_hash}/diffs/{img}?raw=true'
             print(f'|![old-{img}]({old_image})|![new-{img}]({new_image})|![diff-{img}]({diff_image})|')
             print("</details>")
 
