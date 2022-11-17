@@ -4,7 +4,7 @@
 SCREENSHOTS_DIR="$1"
 
 # this is a pictures directory where we can find our snapshots
-DEVICE_DIR=/storage/emulated/0/Android/data/com.github.murzagalin.snapshot_testing/files/Pictures/.
+DEVICE_DIR=/storage/emulated/0/Android/data/com.github.murzagalin.snapshot_testing/files/Pictures/
 
 # Clear the screenshots directory. Create if does not exist
 rm -rf $SCREENSHOTS_DIR
