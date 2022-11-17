@@ -32,7 +32,7 @@ fun AccountCard(name: String, position: String) {
                 color = Color(0xFFE8F8F8),
                 shape = RoundedCornerShape(8.dp)
             )
-            .padding(8.dp),
+            .padding(4.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Image(
