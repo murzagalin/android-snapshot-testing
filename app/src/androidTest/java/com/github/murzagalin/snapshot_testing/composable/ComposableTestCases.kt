@@ -35,4 +35,15 @@ val searchScreenshotConfig = object: ComposableTestCase {
     }
 }
 
+val boxTestCase = object: ComposableTestCase {
+    override val id = "Composable-BoxWithBorders"
+    override val width = ViewGroup.LayoutParams.WRAP_CONTENT
+    override val height = ViewGroup.LayoutParams.WRAP_CONTENT
+
+    @Composable
+    override fun createUi() {
+        BoxWithBorders()
+    }
+}
+
 val composableTestCases = listOf(accountCardScreenshotConfig, searchScreenshotConfig)
