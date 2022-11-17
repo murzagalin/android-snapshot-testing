@@ -66,7 +66,7 @@ jobs:
           git fetch
           commit_hash=$(git log -n 1 origin/snapshots-tech-branch --pretty=format:"%H") #get the latest commit hash from the snapshots branch
           echo 'COMMENT<<EOF' >> $GITHUB_ENV
-          python scripts/comment-generation.py ${{ env.OLD_SNAPSHOTS_DIR }}images/ ${{ env.NEW_SNAPSHOTS_DIR }}images/ ${{ env.DIFF_SNAPSHOTS_DIR }} $commit_hash >> $GITHUB_ENV
+          python scripts/comment-generation.py ${{ env.OLD_SNAPSHOTS_DIR }} ${{ env.NEW_SNAPSHOTS_DIR }} ${{ env.DIFF_SNAPSHOTS_DIR }} $commit_hash >> $GITHUB_ENV
           echo 'EOF' >> $GITHUB_ENV
           echo comment
           echo $GITHUB_ENV
