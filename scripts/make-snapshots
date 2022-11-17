@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Script param
+SCREENSHOTS_DIR="$1"
+
+# this is a pictures directory where we can find our snapshots
+DEVICE_DIR=/storage/emulated/0/Android/data/com.github.murzagalin.snapshot_testing/files/Pictures/.
+
+# Clear the screenshots directory. Create if does not exist
+rm -rf $SCREENSHOTS_DIR
+mkdir -p $SCREENSHOTS_DIR
+
+# Install the instrumentation to the emulator
+./gradlew clean installDebug installDebugAndroidTest
+
+# Disable animations on the emulator
+adb shell settings put global window_animation_scale 0.0
+adb shell settings put global transition_animation_scale 0.0
+adb shell settings put global animator_duration_scale 0.0
+
+# Run tests in our test class com.github.murzagalin.snapshot_testing.views.ScreenshotsMaker
+# The last part of the command is the instrumentation
+# To find list of instrumentations run: adb shell pm list instrumentation
+adb shell am instrument -w -m  \
+-e class 'com.github.murzagalin.snapshot_testing.views.ScreenshotsMaker' \
+com.github.murzagalin.snapshot_testing.test/androidx.test.runner.AndroidJUnitRunner
+
+# Pull the snapshots and clear the device directory
+adb pull $DEVICE_DIR. $SCREENSHOTS_DIR
+adb shell rm -r $DEVICE_DIR
