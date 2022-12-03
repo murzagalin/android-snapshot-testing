@@ -25,6 +25,7 @@ class ScreenshotComposeActivity  : AppCompatActivity() {
 
     companion object {
         private val CONFIG_EXTRA = "screenshot config"
+
         fun newIntent(
             context: Context,
             screenConfig: ComposableTestCase
@@ -34,7 +35,7 @@ class ScreenshotComposeActivity  : AppCompatActivity() {
     }
 
     private val config by lazy {
-        intent.getSerializableExtra(CONFIG_EXTRA, ComposableTestCase::class.java)
+        intent.getSerializableExtra(CONFIG_EXTRA) as ComposableTestCase
     }
 
     private var viewRect: Rect? = null
