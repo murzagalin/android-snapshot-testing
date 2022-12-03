@@ -2,8 +2,9 @@ package com.github.murzagalin.snapshot_testing.composable
 
 import android.view.ViewGroup
 import androidx.compose.runtime.Composable
+import java.io.Serializable
 
-interface ComposableTestCase {
+interface ComposableTestCase: Serializable {
     val id: String
     val width: Int
     val height: Int

@@ -24,16 +24,17 @@ import com.github.murzagalin.snapshot_testing.toIntPixel
 class ScreenshotComposeActivity  : AppCompatActivity() {
 
     companion object {
-        var config: ComposableTestCase? = null
-
+        private val CONFIG_EXTRA = "screenshot config"
         fun newIntent(
             context: Context,
             screenConfig: ComposableTestCase
-        ): Intent {
-            this.config = screenConfig
-
-            return Intent(context, ScreenshotComposeActivity::class.java)
+        ) = Intent(context, ScreenshotComposeActivity::class.java).apply {
+            putExtra(CONFIG_EXTRA, screenConfig)
         }
+    }
+
+    private val config by lazy {
+        intent.getSerializableExtra(CONFIG_EXTRA, ComposableTestCase::class.java)
     }
 
     private var viewRect: Rect? = null
