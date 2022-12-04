@@ -36,12 +36,12 @@ jobs:
           disable-animations: true
           script: |
             git fetch
-            ./scripts/make-snapshots ${{ env.NEW_SNAPSHOTS_DIR }}
+            ./scripts/take-snapshots ${{ env.NEW_SNAPSHOTS_DIR }}
             git add .
             git stash
             git checkout ${{ github.base_ref }}
             git stash apply
-            ./scripts/make-snapshots ${{ env.OLD_SNAPSHOTS_DIR }}
+            ./scripts/take-snapshots ${{ env.OLD_SNAPSHOTS_DIR }}
             git checkout ${{ github.head_ref }}
 
       - name: Setup python
