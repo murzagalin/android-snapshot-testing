@@ -59,7 +59,7 @@ class ScreenshotActivity : AppCompatActivity() {
         val viewPadding = 8.toIntPixel(this)
 
         val viewLocation = IntArray(2)
-        screenshotView.getLocationInWindow (viewLocation)
+        screenshotView.getLocationInWindow(viewLocation)
 
         return Rect(
             viewLocation[0] - viewPadding,

@@ -21,27 +21,25 @@ fun takeScreenshot(
     viewRect: Rect,
     onSuccess: (Bitmap) -> Unit
 ) {
-    activity.window?.let { window ->
-        val bitmap = Bitmap.createBitmap(
-            viewRect.width(),
-            viewRect.height(),
-            Bitmap.Config.ARGB_8888
-        )
-        PixelCopy.request(
-            window,
-            viewRect,
-            bitmap,
-            { copyResult ->
-                if (copyResult == PixelCopy.SUCCESS) {
-                    onSuccess(bitmap)
-                } else {
-                    error("problem making a screenshot")
-                }
-                bitmap.recycle()
-            },
-            Handler(Looper.getMainLooper())
-        )
-    }
+    val bitmap = Bitmap.createBitmap(
+        viewRect.width(),
+        viewRect.height(),
+        Bitmap.Config.ARGB_8888
+    )
+    PixelCopy.request(
+        activity.window,
+        viewRect,
+        bitmap,
+        { copyResult ->
+            if (copyResult == PixelCopy.SUCCESS) {
+                onSuccess(bitmap)
+            } else {
+                error("problem with taking a screenshot")
+            }
+            bitmap.recycle()
+        },
+        Handler(Looper.getMainLooper())
+    )
 }
 
 fun storeScreenShot(
