@@ -9,15 +9,10 @@ import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onGloballyPositioned
-import androidx.compose.ui.layout.positionInRoot
 import androidx.compose.ui.layout.positionInWindow
-import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import com.github.murzagalin.snapshot_testing.toIntPixel
 
@@ -42,15 +37,14 @@ class ScreenshotComposeActivity  : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val screenConfig = requireNotNull(config) { "screenshot config is not set" }
 
         setContent {
             Box(
                 modifier = Modifier
                     .padding(16.dp)
                     .background(Color.White)
-                    .setWidth(screenConfig.width)
-                    .setHeight(screenConfig.height)
+                    .setWidth(config.width)
+                    .setHeight(config.height)
                     .onGloballyPositioned { coordinates ->
                         val position = coordinates.positionInWindow()
                         val size = coordinates.size
@@ -62,7 +56,7 @@ class ScreenshotComposeActivity  : AppCompatActivity() {
                         )
                     }
             ) {
-                screenConfig.createUi()
+                config.createUi()
             }
         }
     }
