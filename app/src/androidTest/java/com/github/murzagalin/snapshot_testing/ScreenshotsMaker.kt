@@ -53,13 +53,13 @@ class ScreenshotsMaker {
 
     @Test
     fun screenshotViews() {
-        viewTestCases.forEach { config ->
-            val intent = ScreenshotActivity.newIntent(context, config)
+        viewTestCases.forEach { testCase ->
+            val intent = ScreenshotActivity.newIntent(context, testCase)
             launchActivity<ScreenshotActivity>(intent).onActivity { activity ->
                 idlingResource.increment()
 
                 takeScreenshot(activity, activity.getViewRect()) { bitmap ->
-                    storeScreenShot(activity, bitmap, "${config.id}.png")
+                    storeScreenShot(activity, bitmap, "${testCase.id}.png")
                     idlingResource.decrement()
                 }
             }
@@ -69,15 +69,15 @@ class ScreenshotsMaker {
 
     @Test
     fun screenshotComposables() {
-        composableTestCases.forEach { config ->
-            val intent = ScreenshotComposeActivity.newIntent(context, config)
+        composableTestCases.forEach { testCase ->
+            val intent = ScreenshotComposeActivity.newIntent(context, testCase)
             launchActivity<ScreenshotComposeActivity>(
                 intent
             ).onActivity { activity ->
                 idlingResource.increment()
 
                 takeScreenshot(activity, activity.getViewRect()) { bitmap ->
-                    storeScreenShot(activity, bitmap, "${config.id}.png")
+                    storeScreenShot(activity, bitmap, "${testCase.id}.png")
                     idlingResource.decrement()
                 }
             }

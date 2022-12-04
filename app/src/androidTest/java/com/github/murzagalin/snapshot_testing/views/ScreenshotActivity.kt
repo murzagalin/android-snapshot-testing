@@ -10,37 +10,40 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.setPadding
+import com.github.murzagalin.snapshot_testing.composable.ComposableTestCase
+import com.github.murzagalin.snapshot_testing.composable.ScreenshotComposeActivity
 import com.github.murzagalin.snapshot_testing.toIntPixel
 
 class ScreenshotActivity : AppCompatActivity() {
 
     companion object {
-        var config: ViewTestCase? = null
+        private const val TESTCASE_EXTRA = "screenshot config"
 
         fun newIntent(
             context: Context,
-            screenConfig: ViewTestCase
-        ): Intent {
-            this.config = screenConfig
-
-            return Intent(context, ScreenshotActivity::class.java)
+            testCase: ViewTestCase
+        ) = Intent(context, ScreenshotActivity::class.java).apply {
+            putExtra(TESTCASE_EXTRA, testCase)
         }
     }
 
     private var view: View? = null
+
+    private val testCase by lazy {
+        intent.getSerializableExtra(TESTCASE_EXTRA) as ViewTestCase
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val content = FrameLayout(this)
         content.setBackgroundColor (Color.WHITE)
         setContentView(content)
-        val screenConfig = requireNotNull(config) { "screenshot config is not set" }
 
-        content.addView(createView(screenConfig))
+        content.addView(createView(testCase))
     }
 
-    private fun createView(config: ViewTestCase) = FrameLayout(this).apply {
-        view = config.createView(this@ScreenshotActivity)
+    private fun createView(testCase: ViewTestCase) = FrameLayout(this).apply {
+        view = testCase.createView(this@ScreenshotActivity)
         setPadding(16.toIntPixel(context))
         clipChildren = false
         clipToPadding = false
@@ -48,7 +51,7 @@ class ScreenshotActivity : AppCompatActivity() {
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.WRAP_CONTENT
         )
-        addView(view, ViewGroup.LayoutParams(config.width, config.height))
+        addView(view, ViewGroup.LayoutParams(testCase.width, testCase.height))
     }
 
     fun getViewRect(): Rect {

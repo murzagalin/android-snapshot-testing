@@ -3,8 +3,9 @@ package com.github.murzagalin.snapshot_testing.views
 import android.content.Context
 import android.view.View
 import android.view.ViewGroup
+import java.io.Serializable
 
-interface ViewTestCase {
+interface ViewTestCase: Serializable {
     val id: String
     val width: Int
     val height: Int

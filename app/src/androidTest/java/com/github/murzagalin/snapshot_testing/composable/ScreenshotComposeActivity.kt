@@ -19,18 +19,18 @@ import com.github.murzagalin.snapshot_testing.toIntPixel
 class ScreenshotComposeActivity  : AppCompatActivity() {
 
     companion object {
-        private val CONFIG_EXTRA = "screenshot config"
+        private const val TESTCASE_EXTRA = "screenshot config"
 
         fun newIntent(
             context: Context,
-            screenConfig: ComposableTestCase
+            testCase: ComposableTestCase
         ) = Intent(context, ScreenshotComposeActivity::class.java).apply {
-            putExtra(CONFIG_EXTRA, screenConfig)
+            putExtra(TESTCASE_EXTRA, testCase)
         }
     }
 
-    private val config by lazy {
-        intent.getSerializableExtra(CONFIG_EXTRA) as ComposableTestCase
+    private val testCase by lazy {
+        intent.getSerializableExtra(TESTCASE_EXTRA) as ComposableTestCase
     }
 
     private var viewRect: Rect? = null
@@ -43,8 +43,8 @@ class ScreenshotComposeActivity  : AppCompatActivity() {
                 modifier = Modifier
                     .padding(16.dp)
                     .background(Color.White)
-                    .setWidth(config.width)
-                    .setHeight(config.height)
+                    .setWidth(testCase.width)
+                    .setHeight(testCase.height)
                     .onGloballyPositioned { coordinates ->
                         val position = coordinates.positionInWindow()
                         val size = coordinates.size
@@ -56,7 +56,7 @@ class ScreenshotComposeActivity  : AppCompatActivity() {
                         )
                     }
             ) {
-                config.createUi()
+                testCase.createUi()
             }
         }
     }
